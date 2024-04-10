@@ -9,7 +9,7 @@ const colors = {
 
 module.exports = {
   content: [
-  "./app/**/*.{js,ts,jsx, tsx}",
+  "./src/**/*.{js,ts,jsx, tsx}",
   "./pages/**/*.{js,ts,jsx,tsx}",
   //"./componrnts/**/*.{js,ts,jsx,tsx",
   ],
@@ -46,7 +46,10 @@ module.exports = {
         }
       }
     },
-    
+    animation: {
+      opacity: 'animationOpacity .5s ease-in-out',
+      scaleIn: 'scaleIn .35s ease-in-out'
+    }
   },
   plugins: [],
 }
