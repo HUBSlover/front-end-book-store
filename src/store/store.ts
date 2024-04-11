@@ -19,12 +19,12 @@
 // 	whitelist: ['cart']
 // }
 
-// const rootReducer = combineReducers({
-// 	cart: cartSlice.reducer,
-// 	carousel: carouselSlice.reducer
-// })
+// // const rootReducer = combineReducers({
+// // 	cart: cartSlice.reducer,
+// // 	carousel: carouselSlice.reducer
+// // })
 
-// const persistReducer = persistReducer(persistConfig, rootReducer)
+// //const persistReducer = persistReducer(persistConfig, rootReducer)
 
 // export const store = configureStore({
 // 	reducer: persistReducer,
@@ -38,4 +38,4 @@
 
 // export const persistor = persistStore(store)
 
-// export type TypeRootState = ReturnType<typeof rootReducer>
+// //export type TypeRootState = ReturnType<typeof rootReducer>
