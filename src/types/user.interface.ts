@@ -5,3 +5,7 @@ export interface IUser {
 	avatarPath: string
 	phone: string
 }
+
+export interface IAuthResponse {
+	user: IUser
+}

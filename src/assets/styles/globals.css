@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 body {
-  @apply text-base text-black
+	@apply text-base text-black bg-bg-color;
 }
 
 .disabled {
-  pointer-events: none;
-  cursor: default;
-  text-decoration: none;
-  opacity: 0.2 !important;
+	pointer-events: none;
+	cursor: default;
+	text-decoration: none;
+	opacity: 0.2 !important;
 }
