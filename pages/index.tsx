@@ -1,7 +1,13 @@
+import Meta from '@/components/ui/Meta'
 import { NextPage } from 'next'
+import { FC } from 'react'
 
-const HomePage: NextPage = () => {
-  return <h1 className='text-3xl font-bold underline'>Hello world!</h1>
+const Home: FC = () => {
+	return (
+		<Meta title="Home">
+			<h1>Hello world!</h1>
+		</Meta>
+	)
 }
 
-export default HomePage
+export default Home
