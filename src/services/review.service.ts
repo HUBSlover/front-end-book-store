@@ -1,28 +1,46 @@
-import { instance } from '@/api/api.interceptor'
-import { IEmailPassword } from '@/store/user/user.interface'
-import { ICategory } from '@/types/category.interface'
+import { instance } from '@/api/api.client'
+import { EnumUrls } from '@/components/config/urls'
+import { IReview } from '@/interfaces/review.interface'
+import { CreateReviewData } from '@/types/create.review.data'
 import axios from 'axios'
 
-const REVIEWS = 'reviews'
-
-type TypeData = {
-	rating: number
-	text: string
-}
-
-export const CategoryService = {
+export const ReviewService = {
 	async getAll() {
-		return instance<ICategory[]>({
-			url: REVIEWS,
-			method: 'GET'
-		})
+		try {
+			// return await instance<IReview[]>({
+			// 	url: EnumUrls.REVIEWS,
+			// 	method: 'GET'
+			// })
+			return axios.get<IReview[]>(EnumUrls.REVIEWS)
+		} catch (error) {
+			console.log(error)
+		}
 	},
 
-	async leave(productId: string, data: TypeData) {
-		return instance<ICategory[]>({
-			url: `${REVIEWS}/leave/${productId}}`,
-			method: 'POST',
-			data
-		})
+	async leave(productId: string, data: CreateReviewData) {
+		try {
+			// return await instance<IReview[]>({
+			// 	url: `${EnumUrls.REVIEWS}/leave/${productId}}`,
+			// 	method: 'POST',
+			// 	data
+			// })
+			return axios.get<IReview[]>(`${EnumUrls.REVIEWS}/leave/${productId}}`)
+		} catch (error) {
+			console.log(error)
+		}
+	},
+
+	async getAverageByProduct(productId: string) {
+		try {
+			// return await instance<number>({
+			// 	url: `${EnumUrls.REVIEWS}/average-by-product/${productId}`,
+			// 	method: 'GET'
+			// })
+			return axios.get<number[]>(
+				`${EnumUrls.REVIEWS}/average-by-product/${productId}`
+			)
+		} catch (error) {
+			console.log(error)
+		}
 	}
 }

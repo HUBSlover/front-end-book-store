@@ -1,29 +1,50 @@
-import { instance } from '@/api/api.interceptor'
-import { IProduct } from '@/types/product.inteface'
-import { PRODUCTS, TypeProductDataFilters } from './product.types'
+import { instance } from '@/api/api.client'
+import { EnumUrls } from '@/components/config/urls'
+import { IProduct } from '@/interfaces/product.inteface'
+import { TypePaginationProducts } from '@/types/type.pagination.products'
+import { TypeProductDataFilters } from '../../types/type.product.data.filters'
+import axios from 'axios'
 
 export const ProductService = {
 	async getAll(queryData = {} as TypeProductDataFilters) {
-		return instance<IProduct[]>({
-			url: PRODUCTS,
-			method: 'GET',
-			params: queryData
-		})
+		try {
+			return await instance<TypePaginationProducts>({
+				url: EnumUrls.PRODUCTS,
+				method: 'GET',
+				params: queryData
+			})
+			// return axios.get<TypePaginationProducts>(EnumUrls.PRODUCTS, {
+			// 	params: queryData
+			// })
+			/*==========================ТУТ НЕ РАБОТАЕТ ПОЧЕМУ-ТО==========================================*/
+		} catch (error) {
+			console.log(error)
+		}
 	},
 
 	/*?????????????????????????????????????????*/
 	/*Посмотрим, потом мб в гетол его тоже*/
 	async getSimilar(id: string) {
-		return instance<IProduct[]>({
-			url: `${PRODUCTS}/similar/${id}`,
-			method: 'GET'
-		})
+		try {
+			// return await instance<IProduct[]>({
+			// 	url: `${EnumUrls.PRODUCTS}/similar/${id}`,
+			// 	method: 'GET'
+			// })
+			return axios.get<IProduct[]>(`${EnumUrls.PRODUCTS}/similar/${id}`)
+		} catch (error) {
+			console.log(error)
+		}
 	},
 
 	async getById(id: string) {
-		return instance<IProduct>({
-			url: `${PRODUCTS}/${id}`,
-			method: 'GET'
-		})
+		try {
+			// return await instance<IProduct>({
+			// 	url: `${EnumUrls.PRODUCTS}/${id}`,
+			// 	method: 'GET'
+			// })
+			return axios.get<IProduct>(`${EnumUrls.PRODUCTS}/${id}`)
+		} catch (error) {
+			console.log(error)
+		}
 	}
 }

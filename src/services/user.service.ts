@@ -1,37 +1,61 @@
-import { instance } from '@/api/api.interceptor'
-import { ICategory } from '@/types/category.interface'
-import { IUser } from '@/types/user.interface'
+import { instance } from '@/api/api.client'
+import { EnumUrls } from '@/components/config/urls'
+import { IFullUser } from '@/interfaces/full.user.interface'
+import { IUser } from '@/interfaces/user.interface'
+import { UserData } from '@/types/user.data'
+import axios from 'axios'
 
-const USERS = 'users'
-
-type TypeData = {
-	email: string
-	password?: string
-	name?: string
-	avatarPath?: string
-	phone?: string
+export const UserService = {
+	async getProfile() {
+		try {
+			// return await instance<IFullUser>({
+			// 	url: `${EnumUrls.USERS}/profile`,
+			// 	method: `GET`
+			// })
+			return axios.get<IFullUser[]>(`${EnumUrls.USERS}/profile`)
+		} catch (error) {
+			console.log(error)
+		}
+	}
 }
 
 export const CategoryService = {
 	async getProfile() {
-		return instance<IUser[]>({
-			url: `${USERS}/profile}`,
-			method: 'GET'
-		})
+		try {
+			// return await instance<IUser[]>({
+			// 	url: `${EnumUrls.USERS}/profile}`,
+			// 	method: 'GET'
+			// })
+			return axios.get<IUser[]>(`${EnumUrls.USERS}/profile`)
+		} catch (error) {
+			console.log(error)
+		}
 	},
 
-	async updateProfile(data: TypeData) {
-		return instance<IUser>({
-			url: `${USERS}/profile`,
-			method: 'PUT',
-			data
-		})
+	async updateProfile(data: UserData) {
+		try {
+			// return await instance<IUser>({
+			// 	url: `${EnumUrls.USERS}/profile`,
+			// 	method: 'PUT',
+			// 	data
+			// })
+			return axios.get<IUser[]>(`${EnumUrls.USERS}/profile`)
+		} catch (error) {
+			console.log(error)
+		}
 	},
 
 	async toggleFavorite(productId: string) {
-		return instance<IUser>({
-			url: `${USERS}/profile/favorites/${productId}}`,
-			method: 'PATCH'
-		})
+		try {
+			return await instance<IUser>({
+				url: `${EnumUrls.USERS}/profile/favorites/${productId}}`,
+				method: 'PATCH'
+			})
+			return axios.patch<IUser[]>(
+				`${EnumUrls.USERS}/profile/favorites/${productId}}`
+			)
+		} catch (error) {
+			console.log(error)
+		}
 	}
 }

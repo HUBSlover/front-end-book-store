@@ -12,17 +12,17 @@ const queryClient = new QueryClient({
 	}
 })
 
-// import { persistor, store } from '@/store/store'
-// import { PersistGate } from 'redux-persist/integration/react'
+//import { persistor, store } from '@/store/store'
+import { PersistGate } from 'redux-persist/integration/react'
 
-// export default function App({ Component, pageProps }: AppProps) {
-// 	return (
-// 		<QueryClientProvider client={queryClient}>
-// 			<Provider store={store}>
-// 				<PersistGate loading={null} persistor={persistor}>
-// 					<Component {...pageProps} />
-// 				</PersistGate>
-// 			</Provider>
-// 		</QueryClientProvider>
-// 	)
-// }
+export default function App({ Component, pageProps }: AppProps) {
+	return (
+		<QueryClientProvider client={queryClient}>
+			{/* <Provider store={store}> */}
+			{/* <PersistGate loading={null} persistor={persistor}> */}
+			<Component {...pageProps} />
+			{/* </PersistGate> */}
+			{/* </Provider> */}
+		</QueryClientProvider>
+	)
+}

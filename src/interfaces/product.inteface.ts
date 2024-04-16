@@ -13,7 +13,3 @@ export interface IProduct {
 	createdAt: string
 	category: ICategory
 }
-
-export interface IProductDetails {
-	product: IProduct
-}

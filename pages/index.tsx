@@ -1,13 +1,23 @@
-import Meta from '@/components/ui/Meta'
-import { NextPage } from 'next'
-import { FC } from 'react'
+import Home from '@/components/screens/home/Home'
+import { ProductService } from '@/services/product/product.service'
+import { TypePaginationProducts } from '@/types/type.pagination.products'
+import { GetStaticProps, NextPage } from 'next'
 
-const Home: FC = () => {
-	return (
-		<Meta title="Home">
-			<h1>Hello world!</h1>
-		</Meta>
-	)
+const HomePage: NextPage<TypePaginationProducts> = ({ length, products }) => {
+	return <Home products={products} length={length} />
 }
 
-export default Home
+export const getStaticProps: GetStaticProps<
+	TypePaginationProducts
+> = async () => {
+	const { data } = await ProductService.getAll({
+		page: 1,
+		perPage: 4
+	})
+
+	return {
+		props: data
+	}
+}
+
+export default HomePage
