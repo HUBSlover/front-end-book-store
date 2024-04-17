@@ -1,9 +1,11 @@
 import { FC, PropsWithChildren } from 'react'
 import Sidebar from './sidebar/Sidebar'
+import { Header } from './header/Header'
 
 const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	return (
 		<div>
+			<Header />
 			<div
 				className="grid"
 				style={{
@@ -11,7 +13,7 @@ const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 				}}
 			>
 				<Sidebar />
-				<main>{children}</main>
+				<main className="p-12">{children}</main>
 			</div>
 		</div>
 	)
