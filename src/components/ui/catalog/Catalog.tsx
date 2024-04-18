@@ -5,18 +5,12 @@ import Button from '../button/Button'
 import ProductItem from './product-item/ProductItem'
 import SortDropdown from './product-item/SortDropdown'
 
-const Catalog: FC<ICatalog> = ({
-	products,
-	isLoading,
-	title,
-	isPagination = false
-}) => {
+const Catalog: FC<ICatalog> = ({ products, isLoading, title }) => {
 	if (isLoading) return <Loader />
 
 	return (
 		<section>
 			{title && <h1 className="font-bold">{title}</h1>}
-			{isPagination && <SortDropdown />}
 			{products.length ? (
 				<>
 					<div className="grid grid-cols-4 gap-10">
@@ -24,7 +18,6 @@ const Catalog: FC<ICatalog> = ({
 							<ProductItem key={product.id} product={product} />
 						))}
 					</div>
-					{isPagination && <Button variant="orange">Load more</Button>}
 				</>
 			) : (
 				<div>There are no products</div>
