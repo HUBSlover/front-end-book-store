@@ -1,12 +1,7 @@
+import { ISeo } from '@/interfaces/seo.interface'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FC, PropsWithChildren } from 'react'
-
-interface ISeo {
-	title: string
-	description?: string
-	image?: string
-}
 
 export const titleMerge = (title: string) => `${title} | Book Store`
 

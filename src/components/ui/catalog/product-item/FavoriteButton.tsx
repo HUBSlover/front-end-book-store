@@ -8,13 +8,13 @@ interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const FavoriteButton: FC<{ productId: string }> = ({ productId }) => {
-	const { profile } = useProfile()
+	//const { profile } = useProfile()
 
 	//const isExists = profile.favorites.some(favorite.id === productId)
 
 	return (
 		<div className="text-primary">
-			<button>Button</button>
+			<button>💛</button>
 		</div>
 	)
 }

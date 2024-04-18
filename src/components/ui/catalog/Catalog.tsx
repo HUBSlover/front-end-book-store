@@ -15,7 +15,7 @@ const Catalog: FC<ICatalog> = ({
 
 	return (
 		<section>
-			{title && <h1 className="mb-5">{title}</h1>}
+			{title && <h1 className="font-bold">{title}</h1>}
 			{isPagination && <SortDropdown />}
 			{products.length ? (
 				<>

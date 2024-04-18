@@ -8,7 +8,7 @@ const Home: FC<TypePaginationProducts> = ({ products, length }) => {
 	return (
 		<Meta title="Home">
 			<Layout>
-				<Catalog title="Products" products={products || []} isPagination />
+				<Catalog title="Books" products={products || []} isPagination />
 			</Layout>
 		</Meta>
 	)
