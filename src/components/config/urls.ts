@@ -3,5 +3,5 @@ export enum EnumUrls {
 	ORDERS = 'orders',
 	REVIEWS = 'review',
 	USERS = 'users',
-	PRODUCTS = 'PRODUCTS'
+	PRODUCTS = 'products'
 }

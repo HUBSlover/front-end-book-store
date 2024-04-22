@@ -1,14 +1,10 @@
 import { IProduct } from '@/interfaces/product.inteface'
+import { calculateAverageRating } from '@/utils/averageReview'
 import { FC, useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
 
 export const ProductRating: FC<{ product: IProduct }> = ({ product }) => {
-	const [rating, setRating] = useState<number>(
-		Math.round(
-			product.reviews.reduce((acc, review) => acc + review.rating, 0) /
-				product.reviews.length
-		) || 0
-	)
+	const [rating, setRating] = useState(calculateAverageRating(product))
 
 	return (
 		<div className="mb-2">

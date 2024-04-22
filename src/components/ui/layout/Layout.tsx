@@ -6,12 +6,7 @@ const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	return (
 		<div>
 			<Header />
-			<div
-				className="grid"
-				style={{
-					gridTemplateColumns: '1fr 4fr'
-				}}
-			>
+			<div className="grid grid-flow-col">
 				<Sidebar />
 				<main className="p-12">{children}</main>
 			</div>

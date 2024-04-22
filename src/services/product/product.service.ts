@@ -8,15 +8,14 @@ import axios from 'axios'
 export const ProductService = {
 	async getAll(queryData = {} as TypeProductDataFilters) {
 		try {
-			return await instance<TypePaginationProducts>({
-				url: EnumUrls.PRODUCTS,
-				method: 'GET',
-				params: queryData
-			})
-			// return axios.get<TypePaginationProducts>(EnumUrls.PRODUCTS, {
+			// return await instance<TypePaginationProducts>({
+			// 	url: EnumUrls.PRODUCTS,
+			// 	method: 'GET',
 			// 	params: queryData
 			// })
-			/*==========================ТУТ НЕ РАБОТАЕТ ПОЧЕМУ-ТО==========================================*/
+			return instance.get<TypePaginationProducts>(EnumUrls.PRODUCTS, {
+				params: queryData
+			})
 		} catch (error) {
 			console.log(error)
 		}
@@ -30,7 +29,7 @@ export const ProductService = {
 			// 	url: `${EnumUrls.PRODUCTS}/similar/${id}`,
 			// 	method: 'GET'
 			// })
-			return axios.get<IProduct[]>(`${EnumUrls.PRODUCTS}/similar/${id}`)
+			return instance.get<IProduct[]>(`${EnumUrls.PRODUCTS}/similar/${id}`)
 		} catch (error) {
 			console.log(error)
 		}
@@ -42,7 +41,7 @@ export const ProductService = {
 			// 	url: `${EnumUrls.PRODUCTS}/${id}`,
 			// 	method: 'GET'
 			// })
-			return axios.get<IProduct>(`${EnumUrls.PRODUCTS}/${id}`)
+			return instance.get<IProduct>(`${EnumUrls.PRODUCTS}/${id}`)
 		} catch (error) {
 			console.log(error)
 		}

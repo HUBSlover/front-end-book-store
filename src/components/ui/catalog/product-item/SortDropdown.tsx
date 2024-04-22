@@ -1,15 +1,23 @@
-import { EnumProductSort } from '@/types/enum.product.sort'
+import { ISortDropdown } from '@/interfaces/sort.dropdown.interface'
+import { MapProductSortEn, MapProductSortRu } from '@/types/map.product.sorts'
 import { FC } from 'react'
 
-const SortDropdown: FC = () => {
+const SortDropdown: FC<ISortDropdown> = ({ setSortType, sortType }) => {
 	return (
 		<div className="text-right mb-5">
-			<select className="appearance-none py-1 px-2 bg-white border-gray">
-				{(
-					Object.keys(EnumProductSort) as Array<keyof typeof EnumProductSort>
-				).map((key) => {
+			<select
+				value={sortType}
+				onChange={(e) => {
+					setSortType(e.target.value as any)
+				}}
+				className="appearance-none py-1 px-2 bg-white border-gray"
+			>
+				{Array.from(MapProductSortRu).map(([key, value]) => {
+					console.log(key, value)
 					return (
-						<option value={EnumProductSort[key]}>{EnumProductSort[key]}</option>
+						<option key={key} value={value}>
+							{value}
+						</option>
 					)
 				})}
 			</select>

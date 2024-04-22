@@ -1,39 +1,64 @@
+import { EnumUrls } from '@/components/config/urls'
 import { ICatalogPagination } from '@/interfaces/catalog.interface.pagination'
-import { FC } from 'react'
+import { ProductService } from '@/services/product/product.service'
+import { EnumProductSort } from '@/types/enum.product.sort'
+import { useQuery } from '@tanstack/react-query'
+import { FC, useState } from 'react'
+import Loader from '../Loader'
 import Button from '../button/Button'
 import ProductItem from './product-item/ProductItem'
 import SortDropdown from './product-item/SortDropdown'
+import Heading from '../Heading'
 
-const CatalogPagination: FC<ICatalogPagination> = ({ products, title }) => {
-	// const [page, setPage] = useState(1)
+const CatalogPagination: FC<ICatalogPagination> = ({ title }) => {
+	const [page, setPage] = useState(1)
 
-	// const [sortType, setSortType] = useState<EnumProductSort>(
-	// 	EnumProductSort.NEWEST
-	// )
+	const [sortType, setSortType] = useState<EnumProductSort>(
+		EnumProductSort.NEWEST
+	)
 
-	// const { data, isLoading } = useQuery(['products', sortType], () =>
-	// 	ProductService.getAll({
-	// 		page,
-	// 		perPage: 4,
-	// 		sort: sortType
-	// 	})
-	// )
+	const { data: response, isLoading } = useQuery({
+		queryKey: [EnumUrls.PRODUCTS, sortType, page],
+		queryFn: () => {
+			return ProductService.getAll({
+				page,
+				perPage: 4,
+				sort: sortType
+			})
+		}
+	})
+
+	if (isLoading) return <Loader />
+
+	console.log(title)
 
 	return (
 		<section>
-			{title && <h1 className="font-bold">{title}</h1>}
-			<SortDropdown />
-			{products.length ? (
+			{title && <Heading className="mb-5" title={title} />}
+			<SortDropdown sortType={sortType} setSortType={setSortType} />
+			{response?.data.products ? (
 				<>
 					<div className="grid grid-cols-4 gap-10">
-						{products.map((product) => (
+						{response?.data.products.map((product) => (
 							<ProductItem key={product.id} product={product} />
 						))}
 					</div>
 					<div className="text-center mt-16">
-						<Button size="sm" variant="orange">
-							Загрузить ещё
-						</Button>
+						{Array.from({ length: response.data.products.length / 4 }).map(
+							(_, index) => {
+								const pageNumber = index + 1
+								return (
+									<Button
+										size="sm"
+										variant={page === pageNumber ? 'orange' : 'white'}
+										onClick={() => setPage(pageNumber)}
+										className="mx-3"
+									>
+										{pageNumber}
+									</Button>
+								)
+							}
+						)}
 					</div>
 				</>
 			) : (

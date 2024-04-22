@@ -1,8 +1,8 @@
 export type TypeProductDataFilters = {
-	sort?: string
-	searchTerm?: string
 	page?: string | number
 	perPage?: string | number
+	sort?: string
+	searchTerm?: string
 	author?: string
 	priceMin?: number
 	priceMax?: number

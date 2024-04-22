@@ -11,7 +11,8 @@ const nextConfig = {
 			's1-goods.ozstatic.by',
 			's4-goods.ozstatic.by',
 			's3-goods.ozstatic.by',
-			's2-goods.ozstatic.by'
+			's2-goods.ozstatic.by',
+			'www.pngall.com'
 		]
 	}
 }
