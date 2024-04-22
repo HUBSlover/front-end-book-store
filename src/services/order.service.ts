@@ -1,17 +1,18 @@
-import { instance } from '@/api/api.interceptor'
-import { IEmailPassword } from '@/store/user/user.interface'
-import { ICategory } from '@/types/category.interface'
-import { IOrder } from '@/types/order.interface'
-import { IReview } from '@/types/review.interface'
+import { instance } from '@/api/api.client'
+import { EnumUrls } from '@/components/config/urls'
+import { IOrder } from '@/interfaces/order.interface'
 import axios from 'axios'
-
-const ORDERS = 'orders'
 
 export const OrderService = {
 	async getAll() {
-		return instance<IOrder[]>({
-			url: ORDERS,
-			method: 'GET'
-		})
+		try {
+			// return await instance<IOrder[]>({
+			// 	url: EnumUrls.ORDERS,
+			// 	method: 'GET'
+			// })
+			return axios.get<IOrder[]>(EnumUrls.ORDERS)
+		} catch (error) {
+			console.log(error)
+		}
 	}
 }
